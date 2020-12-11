@@ -3,7 +3,8 @@ package test;
 import org.testng.annotations.Test;
 
 public class SearchTest {
-  @Test
+//CHANGED
+	@Test
   public void f() {
   }
 }
