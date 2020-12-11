@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="Suite" parallel="false">
+<listeners>
+<listener class-name="base.TestListener"/>
+</listeners>
+  <test name="Test - Login functionality">
+    <classes>
+      <class name="test.LoginTest"/>
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->
