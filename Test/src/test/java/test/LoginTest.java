@@ -8,6 +8,8 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Listeners;
+import org.testng.annotations.Optional;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import base.ExcelUtility;
@@ -35,12 +37,12 @@ public class LoginTest extends TestBase {
 	 try {
 		 AR=l.getUsername();
 		 h.clickLogout();
-		 ex.writeExcel("C:\\alka\\testdata.xls", "LoginData", r, resultColumn, "pass");
+		// ex.writeExcel("C:\\alka\\testdata.xls", "LoginData", r, resultColumn, "pass");
 	 }
 	 catch(Exception e)
 	 {
 		AR=null; 
-		ex.writeExcel("C:\\alka\\testdata.xls", "LoginData", r, resultColumn, "fail");
+	//	ex.writeExcel("C:\\alka\\testdata.xls", "LoginData", r, resultColumn, "fail");
 	 }
 	 r=r+1;
 	 Assert.assertEquals(AR, ER);
@@ -72,14 +74,14 @@ public class LoginTest extends TestBase {
 	  
 	    }
   
-
+ @Parameters({"url","browserName","broswerType","node"})
  @BeforeTest
- public void setup()
+ public void setup(String url,String browserName,String broswerType,@Optional("node")String node)
  {
 	 
 	 
 	
-	 initializeDriver("http://demowebshop.tricentis.com/");
+	 intializeBrowser(url, browserName, broswerType, node);
 	 //normal intialization
 	 h=new HomePage();
 	l=new LoginPage();

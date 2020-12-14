@@ -1,33 +1,34 @@
 package base;
 
+import java.net.MalformedURLException;
+import java.net.URL;
+
+import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.remote.CapabilityType;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
+import org.testng.annotations.Optional;
+import org.testng.annotations.Parameters;
 
 public class TestBase {
-	public static WebDriver d;
+	private static final ThreadLocal<WebDriver> drivers=new ThreadLocal<WebDriver>();
 	public static EventFiringWebDriver ed;
 
 public WebDriver getDriver()
 {
 	
-	return d;
+	return drivers.get();
 	
 }
 
-public void initializeDriver(String url)
+public void intializeBrowser(String url,String browserName,String broswerType,String node)
 {
-	 //tell the path of drivers to selenium
-
-	 System.setProperty("webdriver.chrome.driver", "src//test//resources//chromedriver.exe");
-	 d=new ChromeDriver();
-	 ed=new EventFiringWebDriver(d);
-	 WebDriverListener w = new WebDriverListener();
-	 ed.register(w);
-	 d=ed;
-	 d.manage().window().maximize();
-	 d.get(url);
-	 
+	WebDriver d=Browserfactory.createDriver(url, browserName, broswerType,node);
+	drivers.set(d);
 }
 
 
